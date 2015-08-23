@@ -34,8 +34,10 @@ When the ACS712 current = 0, the measured output value will equal the ACSoffset.
 VCC can be measured by plugging the Arduino 5V to A0.
 */
 int ACSoffset = 2260; // find this value by connecting output to VDD, and measure RawValues
-float VDD = 4720; // VDD in MilliVolts
+float VDD = 4.720; // VDD in volts
+float VDDmv = 4720; // VDD in millivolts
 float DMR = 0.181; // Voltage Divider Value found by R2/(R2+R1)
+
 
 #include <FileIO.h>
 
@@ -50,47 +52,43 @@ void setup() {
 }
 
 void loop() {
+
   // make a string that start with a timestamp for assembling the data to log:
   String dataString;
   dataString += getTimeStamp();
   dataString += " = ";
+  
+  // set data pins
+  int voltPin0 = 0;
+  int currPin1 = 1;
+  float Von;
+  float Iin;
+  //Obtain RAW voltage data
+  Von = analogRead(voltPin0);
+  Iin = analogRead(currPin1);
 
+  // Setup variables to Convert to actual voltage (0 - 4.72 Vdc - uncompensated due to USB input)
+  float Vo;
+  float Ii;
+
+  // Delcare string within scope
+  String output1;
+  String output2;
+
+  // Translate from raw input and convert from voltage divider or offset
+    Vo = (Von / 1023) * VDD; // (sensor/1023)*VDD gets you mV of output, assuming VDD = 4720
+      //Convert to voltage before divider
+    float Vin;
+    Vin = Vo / DMR;
     
-  // read 3 sensors and append to dataString
-  // Declare variables for purposes listed - A0: "Vbatt", A1: "Io", A2: "Ii"
-   for (int analogPin = 0; analogPin < 3; analogPin++) {
-    int sensor = analogRead(analogPin);
+    Ii = (Iin / 1023) * VDDmv; // convert pin input current measurement to millivolts
+    float Iix; // set variable for input current translated
+    Iix = ((Ii = ACSoffset) / mVperAmp); // convert millivolts to Amps
+    
+    output1 = String(Vin);
+    output2 = String(Iix);
 
-      // Delcare string within scope
-      int outputvalue;
-      String output;
-
-
-      // Calculate voltage by voltage divider function, Volt1
-    if (analogPin == 0){
-      outputvalue = (1/DMR ) * ((sensor / 1023.0) * VDD); // (sensor/1023)*VDD gets you mV of output, assuming VDD = 4720
-      output = String(outputvalue);
-    }
-
-      // Calculate output amps by scaling function, Amps1
-    if (analogPin == 1){
-      // Calculate voltage by scaling function
-      outputvalue = ((((sensor / 1023.0) * VDD) - ACSoffset) / mVperAmp); // gets you mV/mVperAmp
-      output = String(outputvalue);
-    }
-
-      // Calculate input amps by scaling function, Amps2
-    if (analogPin == 2){
-      outputvalue = ((((sensor / 1023.0) * VDD) - ACSoffset) / mVperAmp); // gets you mV/mVperAmp
-      output = String(outputvalue);
-    }
-
-    dataString += String(output);
-
-    if (analogPin < 2) {
-      dataString += ",";  // separate the values with a comma
-    }
-  }
+    dataString = output1 + " " + output2;
   
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
