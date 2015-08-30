@@ -60,19 +60,24 @@ void loop() {
   // Set Data Pins
   int voltPin0 = 0;
   int currPin1 = 1;
+  int currPin2 = 2;
   float Von;
   float Iin;
+  float Ion;
   //Obtain RAW voltage data
   Von = analogRead(voltPin0);
   Iin = analogRead(currPin1);
+  Ion = analogRead(currPin2);
 
   // Setup variables to Convert to actual voltage (0 - 4.72 Vdc - uncompensated due to USB input)
   float Vo;
   float Ii;
+  float Io;
 
   // Delcare string within scope
   String output1;
   String output2;
+  String output3;
 
   // Translate from raw input and convert from voltage divider or offset
     Vo = (Von / 1023) * VDD; // (sensor/1023)*VDD gets you mV of output, assuming VDD = 4720
@@ -84,8 +89,14 @@ void loop() {
     float Iix; // set variable for input current translated
     Iix = ((Ii - ACSoffset) / mVperAmp); // convert millivolts to Amps
     
+    Io = (Ion / 1023) * VDDmv;
+    float Iox;
+    Iox = ((Io - ACSoffset) / mVperAmp);
+    
+    
     output1 = String(Vin);
     output2 = String(Iix);
+    output3 = String(Iox);
 
   // dataString = output1 + " " + output2;
   
@@ -101,6 +112,8 @@ void loop() {
     dataFile.print(output1); // print Vin to dataFile
     dataFile.print(",");
     dataFile.print(output2); // print Iin to dataFile
+    dataFile.print(",");
+    dataFile.print(output3); // print Ion to dataFile
     dataFile.println(); // print linefeed character on dataFile
     dataFile.close(); // close file
     // print to the serial port too:
@@ -109,6 +122,8 @@ void loop() {
     Serial.print(output1);
     Serial.print(",");
     Serial.print(output2);
+    Serial.print(",");
+    Serial.print(output3);
     Serial.println();
   }  
   // if the file isn't open, pop up an error:
