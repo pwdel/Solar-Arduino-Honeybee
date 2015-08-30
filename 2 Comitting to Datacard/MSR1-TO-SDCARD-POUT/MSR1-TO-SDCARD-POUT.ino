@@ -48,17 +48,16 @@ void setup() {
   FileSystem.begin();
 
   while(!Serial);  // wait for Serial port to connect.
-  Serial.println("Filesystem datalogger\n");
+  Serial.println("MSR1-TO_SD_CARD-POUT");
 }
 
 void loop() {
 
-  // make a string that start with a timestamp for assembling the data to log:
-  String dataString;
-  dataString += getTimeStamp();
-  dataString += " = ";
+  // Get Timestamp For Each Data Point
+  String TimeStamp;
+  TimeStamp = getTimeStamp();
   
-  // set data pins
+  // Set Data Pins
   int voltPin0 = 0;
   int currPin1 = 1;
   float Von;
@@ -83,12 +82,12 @@ void loop() {
     
     Ii = (Iin / 1023) * VDDmv; // convert pin input current measurement to millivolts
     float Iix; // set variable for input current translated
-    Iix = ((Ii = ACSoffset) / mVperAmp); // convert millivolts to Amps
+    Iix = ((Ii - ACSoffset) / mVperAmp); // convert millivolts to Amps
     
     output1 = String(Vin);
     output2 = String(Iix);
 
-    dataString = output1 + " " + output2;
+  // dataString = output1 + " " + output2;
   
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
@@ -97,10 +96,20 @@ void loop() {
 
   // if the file is available, write to it:
   if (dataFile) {
-    dataFile.println(dataString);
-    dataFile.close();
+    dataFile.print(TimeStamp); // print timestamp to dataFile
+    dataFile.print(",");
+    dataFile.print(output1); // print Vin to dataFile
+    dataFile.print(",");
+    dataFile.print(output2); // print Iin to dataFile
+    dataFile.println(); // print linefeed character on dataFile
+    dataFile.close(); // close file
     // print to the serial port too:
-    Serial.println(dataString);
+    Serial.print(TimeStamp);
+    Serial.print(",");
+    Serial.print(output1);
+    Serial.print(",");
+    Serial.print(output2);
+    Serial.println();
   }  
   // if the file isn't open, pop up an error:
   else {
