@@ -45,10 +45,17 @@ void setup() {
   // Initialize the Bridge and the Serial
   Bridge.begin();
   Serial.begin(9600);
+  Console.begin(); // setup console for ssh telnet
   FileSystem.begin();
 
   while(!Serial);  // wait for Serial port to connect.
   Serial.println("MSR1-TO_SD_CARD-POUT");
+  
+  while (!Console){
+    ; // wait for Console port to connect.
+  }
+  Console.println("You're connected to the Console!!!!");
+  
 }
 
 void loop() {
@@ -125,10 +132,22 @@ void loop() {
     Serial.print(",");
     Serial.print(output3);
     Serial.println();
+    // print to Console
+    Console.print(TimeStamp);
+    Console.print(",");
+    Console.print(output1);
+    Console.print(",");
+    Console.print(output2);
+    Console.print(",");
+    Console.print(output3);
+    Console.println();
+    
+    
   }  
   // if the file isn't open, pop up an error:
   else {
     Serial.println("error opening datalog.txt");
+    Console.println("error opening datalog.txt");
   } 
 
   delay(15000);  
