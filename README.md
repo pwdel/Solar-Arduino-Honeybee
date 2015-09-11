@@ -30,7 +30,7 @@ As of the date of authoring this GitHub repository, there is much written online
 
 The Arduino Yun has [Dropbear](https://matt.ucc.asn.au/dropbear/dropbear.html) installed, which is a relatively small SSH client.  So, you have to generate a public RSA ID and copy that over to the remote VPS.  That way, the Yun will be able to automatically log on to the VPS without a person having to manually enter a password.
 
-The procedure to accomplish this is as follows:
+**Accomplishing the Automatic Authentication**
 
 1. Generate keys on the Yun via:
 
