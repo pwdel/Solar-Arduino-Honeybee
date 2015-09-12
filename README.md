@@ -40,23 +40,25 @@ The Arduino Yun has [Dropbear](https://matt.ucc.asn.au/dropbear/dropbear.html) i
 
 #### Accomplishing the Automatic Authentication
 
-1. Generate keys on the Yun via:
+* Generate keys on the Yun via:
 
 > dropbearkey -t rsa -f ~/.ssh/id_rsa 
 
-2. Change the format for a standard SSH server
+* Change the format for a standard SSH server
 
 > dropbearkey -y -f ~/.ssh/id_rsa | grep "^ssh-rsa" >> authorized_keys
 
-3. SCP the authorized_keys to the VPS
+* SCP the authorized_keys to the VPS
 
-4. Set file permissions to 600
+> scp authorized_keys user@webhost: ~/.ssh/authorized_keys
 
-5. Logged on to the Yun, test the SSH function to see if it asks for a password.  If the following does not ask you for a password, it works!  If not, something is wrong.
+* Set file permissions to 600
+
+* Logged on to the Yun, test the SSH function to see if it asks for a password.  If the following does not ask you for a password, it works!  If not, something is wrong.
 
 > root@user:~#  ssh user@webhost -i /root/.ssh/id_rsa
 
-6. Automate the RSYNC function: the following needs to go into a cron job for a regular update.
+* Automate the RSYNC function: the following needs to go into a cron job for a regular update.
 
 > rsync -avz -e "ssh -i /root/.ssh/id_rsa" 
 > user@webhost:~# somefilehere.txt somefilehere.txt
