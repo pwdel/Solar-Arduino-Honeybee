@@ -43,7 +43,8 @@ void setup() {
   Console.begin();
   FileSystem.begin();
 
-  while (!Console); // wait for Console port to connect.
+  // Modified 09-07-2015 RFT (Remove comment for debug)
+  // while (!Console); // wait for Console port to connect.
   Console.println("Filesystem datalogger\n");
 
   // Add 09-3-2015 RFT
