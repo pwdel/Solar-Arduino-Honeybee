@@ -110,6 +110,13 @@ and further that:
 
 Therefore, going at or beyond 6V will damage the ATmega32u4, which will lead to the entire Yun being useless, as re-soldering a new ATmega32u4 would be a difficult process, taking time that may be beyond what is worth doing so over buying a new board.
 
+#### Quick Note About Terminal Connections
+
+Just as with everything going from a "higher power," electric source to an electronic source, make sure to keep in mind a couple troubleshooting notes which may save you time and hassle:
+
+1. Make sure all of the DC electronics grounds and DC electric grounds are tied together.
+2. Make sure all of the connections are tight / strong.  This should go without saying, but if you don't, you may be sitting there wondering why WiFi won't connect or why the system won't work, only to find after several hours of troubleshooting that, "your computer wasn't plugged in," in the sense that there wasn't a strong enough connection at the actual battery, and therefore there was not enough power in one of your leads.  Be careful to make sure everything is well-connected and you don't have open-circuits, or un-necessary resistive effects.
+
 ##### Recommended USB 12V to 5V Converters
 
 
