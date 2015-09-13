@@ -73,7 +73,7 @@ The Arduino Yun has [Dropbear](https://matt.ucc.asn.au/dropbear/dropbear.html) i
 
 #### The 12V Standard - Lead Acid Batteries
 
-Our hypothesis is that the most commonly available solar systems for the hobbyist & DIY (e.g. online sales) market are systems designed around 12V applications.  An additional hypothesis comes from ![Battery University](http://batteryuniversity.com/learn/article/whats_the_best_battery), which stipulates as a gross generalization, that Lead Acid batteries typically provide the most economical battery solution for fixed-location systems where weight is not a concern.  That being said, when designing a system for a particular application, it is important to understand the various tradeoffs which occur for a given battery system, including but not limited to:
+Our hypothesis is that the most commonly available solar systems for the hobbyist & DIY (e.g. online sales) market are systems designed around 12V applications.  An additional hypothesis comes from [Battery University](http://batteryuniversity.com/learn/article/whats_the_best_battery), which stipulates as a gross generalization, that Lead Acid batteries typically provide the most economical battery solution for fixed-location systems where weight is not a concern.  That being said, when designing a system for a particular application, it is important to understand the various tradeoffs which occur for a given battery system, including but not limited to:
 
 * Deep Charging Capability
 * Battery Memory
@@ -96,11 +96,11 @@ Our hypothesis is that the most commonly available solar systems for the hobbyis
 
 It is important to realize that this higher voltage from the solar panel can lead to an overvoltage being fed into the Arduino Yun input USB port, leading to the board being damaged.  Using an off-the-shelf voltage converter going from 12V input to 5V USB output is potentially dangerous, as the 5V USB output could potentially be pulled higher than the rated input value.
 
-To understand more about the Arduino Yun board, you can see the documentation ![here](https://www.arduino.cc/en/Main/ArduinoBoardYun), which stipulates the following:
+To understand more about the Arduino Yun board, you can see the documentation [here](https://www.arduino.cc/en/Main/ArduinoBoardYun), which stipulates the following:
 
 > It is recommended to power the board via the micro-USB connection with 5VDC. If you are powering the board though the Vin pin, you must supply a regulated 5VDC. There is no on-board voltage regulator for higher voltages, which will damage the board.
 
-That being said, the ![documentation](http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf) for the ATmega32u4 microcontroller stipulates on page 383 what the absolute maximum ratings are, which are as follows:
+That being said, the [documentation](http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf) for the ATmega32u4 microcontroller stipulates on page 383 what the absolute maximum ratings are, which are as follows:
 
 > MaximumOperatingVoltage ................6.0V
 
