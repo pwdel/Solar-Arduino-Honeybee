@@ -107,7 +107,8 @@ That being said, the [documentation](http://www.atmel.com/Images/Atmel-7766-8-bi
 > MaximumOperatingVoltage ................ 6.0V
 > DC Current VCC and GND Pins ............ 200.0mA
 
-> Voltage on any Pin except RESET and VBUS with respect to Ground(8) . . . . . . . . -0.5V to VCC+0.5V
+> Voltage on any Pin except RESET and VBUS with respect to Ground(8) 
+.......................................... -0.5V to VCC+0.5V
 > DC Current per I/O Pin ................. 40.0mA
 
 and further that:
