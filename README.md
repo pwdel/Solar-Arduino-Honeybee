@@ -96,6 +96,8 @@ Our hypothesis is that the most commonly available solar systems for the hobbyis
 
 It is important to realize that this higher voltage from the solar panel can lead to an overvoltage being fed into the Arduino Yun input USB port, leading to the board being damaged.  Using an off-the-shelf voltage converter going from 12V input to 5V USB output is potentially dangerous, as the 5V USB output could potentially be pulled higher than the rated input value.
 
+![Arduino Yun Block Diagram](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/1%20Measuring%20Current%20%26%20Voltage%20From%20Battery/Arduino-Yun-Block-Diagram.png)
+
 To understand more about the Arduino Yun board, you can see the documentation [here](https://www.arduino.cc/en/Main/ArduinoBoardYun), which stipulates the following:
 
 > It is recommended to power the board via the micro-USB connection with 5VDC. If you are powering the board though the Vin pin, you must supply a regulated 5VDC. There is no on-board voltage regulator for higher voltages, which will damage the board.
