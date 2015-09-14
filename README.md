@@ -105,10 +105,13 @@ To understand more about the Arduino Yun board, you can see the documentation [h
 That being said, the [documentation](http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf) for the ATmega32u4 microcontroller stipulates on page 383 what the absolute maximum ratings are, which are as follows:
 
 > MaximumOperatingVoltage ................ 6.0V
+
 > DC Current VCC and GND Pins ............ 200.0mA
 
 > Voltage on any Pin except RESET and VBUS with respect to Ground(8) 
-.......................................... -0.5V to VCC+0.5V
+
+>......................................... -0.5V to VCC+0.5V
+
 > DC Current per I/O Pin ................. 40.0mA
 
 and further that:
