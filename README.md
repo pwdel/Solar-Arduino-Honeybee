@@ -104,13 +104,19 @@ To understand more about the Arduino Yun board, you can see the documentation [h
 
 That being said, the [documentation](http://www.atmel.com/Images/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf) for the ATmega32u4 microcontroller stipulates on page 383 what the absolute maximum ratings are, which are as follows:
 
-> MaximumOperatingVoltage ................6.0V
+> MaximumOperatingVoltage ................ 6.0V
+> DC Current VCC and GND Pins ............ 200.0mA
+
+> Voltage on any Pin except RESET and VBUS with respect to Ground(8) . . . . . . . . -0.5V to VCC+0.5V
+> DC Current per I/O Pin ................. 40.0mA
 
 and further that:
 
 > Stresses beyond those listed under “Absolute Maximum Ratings” may cause permanent dam- age to the device. This is a stress rating only and functional operation of the device at these or other conditions beyond those indicated in the operational sections of this specification is not implied. Exposure to absolute maximum rat- ing conditions for extended periods may affect device reliability.
 
-Therefore, going at or beyond 6V will damage the ATmega32u4, which will lead to the entire Yun being useless, as re-soldering a new ATmega32u4 would be a difficult process, taking time that may be beyond what is worth doing so over buying a new board.
+Therefore, going at or beyond 6V or at/beyond 200mA at the USB input to the Yun will damage the ATmega32u4, which will lead to the entire Yun being useless, as re-soldering a new ATmega32u4 would be a difficult process, taking time that may be beyond what is worth doing so over buying a new board.
+
+Therefore, it is recommended to test a given power supply for its switching frequency effects when transitioning across voltages.  Non-isolated point-of-load power converters work using switching effects, which cause the current to jump and spike at certain points during its cycle - at higher load draws this current spikes up higher for longer periods of time, potentially damaging the Yun, which as shown above has a maximum power input current of 200mA via the USB port.
 
 #### Quick Note About Terminal Connections
 
