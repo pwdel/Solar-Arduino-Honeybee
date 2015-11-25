@@ -38,11 +38,21 @@ The above picture is a solar panel, which feeds into the enclosure box sitting o
 
 ## Posting to ThingSpeak
 
-Every 15 minutes, voltage is measured at the Arduino pin A0, which is mathematically translated from a 0-5V range to a 0-24V range using a scaling factor that was identified with a multimeter and power supply.  This is displayed on a ThingSpeak Channel chart, as shown in the below chart.
+Every 15 minutes, voltage is measured at the Arduino pin A0, which is mathematically translated from a 0-5V range to a 0-24V range using a scaling factor that was identified with a multimeter and power supply.  The information is sent via the Yun's WiFi functionality to the ThingSpeak server via a POST method.  The voltage ingformation is displayed on a ThingSpeak Channel chart, as shown in the below chart.
 
 ![ThingSpeak Channel Chart](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/2%20Posting%20to%20ThingSpeak/ThingSpeakSolarDataChart.png)
 
 This functionality makes use of a couple of pre-built ThingSpeak functions included in [ThingSpeak.h.](https://github.com/pwdel/Solar-Arduino-Honeybee/blob/master/2%20Posting%20to%20ThingSpeak/ThingSpeak.h)
+
+## Matlab Analysis
+
+After sorting and structuring the data into, "time windows," we can identify the voltage at the, "start," of the "solar day," defined as when the sun starts hitting the solar panel, and the, "stop," of the "solar day," defined as when the sun no longer hits the solar panel.  The difference between these voltages is the, "voltage delta."  We can also read another ThingSpeak channel which is reading cloud cover for the region where the solar system is located, using a weather-reading API.
+
+### Building a Cloud Coverage vs. Voltage Delta Learning Model
+
+Plotting Cloud Coverage vs. Voltage Delta, we see a linear pattern.  We also find that the anti-correlation is very close to 1.  Therefore, we can solve for a linear regression model using Matlab's "\" function, as shown on the below chart.
+
+![Voltage Delta vs. Cloud Matlab Analysis](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/3%20Matlab%20Analysis/VoltageDeltaVsCloudData.png)
 
 
 ## Power Requirements & Electronics Warning
