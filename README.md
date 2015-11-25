@@ -24,48 +24,26 @@ https://www.arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN
 
 ### Prototype Circuit Layout
 
-![Honeybee Solar Circuit Layout](https://github.com/pwdel/Solar-Arduino-Honeybee/blob/master/Presentation/Arduino%20Circuit%20Layout.png)
+![Solar Input Circuit](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/1%20Measuring%20Current%20%26%20Voltage%20From%20Battery/Divider%3ATVS%20Circuit.png)
 
+The circuit, as shown above, is a simple voltage divider followed by a TVS circuit, which uses standard IN4740 diodes.  The IN4740 diodes were used due to their fast turn-on time, which are presumably faster than the Arduino Yun inrush diodes, whose turn-on time specifications could not be found.
 
-![ACS712 Illustration](https://github.com/pwdel/Solar-Arduino-Honeybee/blob/master/Presentation/ACS712-Illustration.png)
+![Actual Breadboard Solder Job](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/1%20Measuring%20Current%20%26%20Voltage%20From%20Battery/ArduinoYun-ExternalCircuit.jpg)
 
+The above is a picture of the hand-soldered prototype of the circuit, which feeds into A0 in the Arduino Yun.
 
-## Automatically Connecting the Yun to a Remote Server
+![Solar Panel Demo](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/1%20Measuring%20Current%20%26%20Voltage%20From%20Battery/SolarPanel-SolarEnclosure.jpg)
 
-### Overall Objective of Connecting to Remote Server
+The above picture is a solar panel, which feeds into the enclosure box sitting outside.
 
-Our method includes connecting the Yun to a VPS to send initial data files which will be cleaned up, converted & transferred to a heroku server.
+## Posting to ThingSpeak
 
-### Automatic Authentication & Cron Job
+Every 15 minutes, voltage is measured at the Arduino pin A0, which is mathematically translated from a 0-5V range to a 0-24V range using a scaling factor that was identified with a multimeter and power supply.  This is displayed on a ThingSpeak Channel chart, as shown in the below chart.
 
-As of the date of authoring this GitHub repository, there is much written online about being able to automatically authenticate an Arduino Yun (Yun) with a laptop or desktop running an IDE, but not as much for connecting the Yun to a remote virtual private server (VPS).
+![ThingSpeak Channel Chart](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/2%20Posting%20to%20ThingSpeak/ThingSpeakSolarDataChart.png)
 
-The Arduino Yun has [Dropbear](https://matt.ucc.asn.au/dropbear/dropbear.html) installed, which is a relatively small SSH client.  So, you have to generate a public RSA ID and copy that over to the remote VPS.  That way, the Yun will be able to automatically log on to the VPS without a person having to manually enter a password.
+This functionality makes use of a couple of pre-built ThingSpeak functions included in [ThingSpeak.h.](https://github.com/pwdel/Solar-Arduino-Honeybee/blob/master/2%20Posting%20to%20ThingSpeak/ThingSpeak.h)
 
-#### Accomplishing the Automatic Authentication
-
-* Generate keys on the Yun via:
-
-> dropbearkey -t rsa -f ~/.ssh/id_rsa 
-
-* Change the format for a standard SSH server
-
-> dropbearkey -y -f ~/.ssh/id_rsa | grep "^ssh-rsa" >> authorized_keys
-
-* SCP the authorized_keys to the VPS
-
-> scp authorized_keys user@webhost: ~/.ssh/authorized_keys
-
-* Set file permissions to 600
-
-* Logged on to the Yun, test the SSH function to see if it asks for a password.  If the following does not ask you for a password, it works!  If not, something is wrong.
-
-> root@user:~#  ssh user@webhost -i /root/.ssh/id_rsa
-
-* Automate the RSYNC function: the following needs to go into a cron job for a regular update.
-
-> rsync -avz -e "ssh -i /root/.ssh/id_rsa" 
-> user@webhost:~# somefilehere.txt somefilehere.txt
 
 ## Power Requirements & Electronics Warning
 
@@ -130,8 +108,6 @@ Just as with everything going from a "higher power," electric source to an elect
 2. Make sure all of the connections are tight / strong.  This should go without saying, but if you don't, you may be sitting there wondering why WiFi won't connect or why the system won't work, only to find after several hours of troubleshooting that, "your computer wasn't plugged in," in the sense that there wasn't a strong enough connection at the actual battery, and therefore there was not enough power in one of your leads.  Be careful to make sure everything is well-connected and you don't have open-circuits, or un-necessary resistive effects.
 
 ##### Recommended USB 12V to 5V Converters
-
-
 
 ## Radio-Frequency (RF) Considerations
 
