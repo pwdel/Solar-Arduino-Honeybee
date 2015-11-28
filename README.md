@@ -54,6 +54,19 @@ Plotting Cloud Coverage vs. Voltage Delta, we see a linear pattern.  We also fin
 
 ![Voltage Delta vs. Cloud Matlab Analysis](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/3%20Matlab%20Analysis/VoltageDeltaVsCloudData.png)
 
+## Solar Stand & Snow Problems
+
+### Location in Northern Latitudes
+
+There are advantages and disadvantages to having solar panels located in northern lattitudes.  On the one hand, the colder weather increases semiconductor efficiency, meaning that the solar panel will produce more electrical power output given the same amount of isolation (light/irradience input power per meter squared).  However, there is a risk of snow blanking out the solar panel.
+
+From the standpoint of the learning model, having a snowfall signal does not automatically kill a solar panel's power output.  If there is a snowfall, the snow could easily melt and fall/drip off of the solar panel, leading to a completely normal/open solar panel.  However if the snowfall is followed by a brief melting and then subsequent sufficiently cold weather, the snow coating over the solar panel could turn into ice, and the cold temperatures will not allow the snow to melt - potentially leading to multiple weeks of no power output.
+
+Practices that are recommended to prevent or minimize this from happening include angling the solar panel at a high angle with respect to the ground.  E.g. the National Oceanic and Atmospheric Administration recommended solar angle for Minneapolis, Minnesota for example is around [45 degrees with respect to ground](http://www.esrl.noaa.gov/gmd/grad/solcalc/) for optimal power absorption over a year.  That being said, to avoid snow and ice build-up, it may be appropriate to consider a higher angle, say 50 or even 60 degrees, depending upon the context of the solar panel, to prevent snow and ice buildup.
+
+From a learning model perspective, we can build in  a function which looks for snowfall and subsequent lower temperatures, which then reports back to the on-site Arduino Yun, telling it to anticipate low power for the following 2-3 weeks.
+
+![Solar Panel with Snow](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/1%20Measuring%20Current%20%26%20Voltage%20From%20Battery/SolarStandSnow.jpg)
 
 ## Power Requirements & Electronics Warning
 
