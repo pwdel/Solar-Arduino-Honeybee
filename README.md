@@ -44,7 +44,7 @@ Every 15 minutes, voltage is measured at the Arduino pin A0, which is mathematic
 
 This functionality makes use of a couple of pre-built ThingSpeak functions included in [ThingSpeak.h.](https://github.com/pwdel/Solar-Arduino-Honeybee/blob/master/2%20Posting%20to%20ThingSpeak/ThingSpeak.h)
 
-![ThingSpeak Public Channel Link](https://thingspeak.com/channels/59967)
+[ThingSpeak Public Channel Link](https://thingspeak.com/channels/59967)
 
 ## Matlab Analysis
 
