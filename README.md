@@ -44,6 +44,8 @@ Every 15 minutes, voltage is measured at the Arduino pin A0, which is mathematic
 
 This functionality makes use of a couple of pre-built ThingSpeak functions included in [ThingSpeak.h.](https://github.com/pwdel/Solar-Arduino-Honeybee/blob/master/2%20Posting%20to%20ThingSpeak/ThingSpeak.h)
 
+![ThingSpeak Public Channel Link](https://thingspeak.com/channels/59967)
+
 ## Matlab Analysis
 
 After sorting and structuring the data into, "time windows," we can identify the voltage at the, "start," of the "solar day," defined as when the sun starts hitting the solar panel, and the, "stop," of the "solar day," defined as when the sun no longer hits the solar panel.  The difference between these voltages is the, "voltage delta."  We can also read another ThingSpeak channel which is reading cloud cover for the region where the solar system is located, using a weather-reading API.
