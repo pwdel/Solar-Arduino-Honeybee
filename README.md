@@ -70,6 +70,16 @@ From a learning model perspective, we can build in  a function which looks for s
 
 ![Solar Panel with Snow](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/1%20Measuring%20Current%20%26%20Voltage%20From%20Battery/SolarStandSnow.jpg)
 
+Further to the challenge of snow in northern lattitudes, snowfall becomes a variable along with solar panel angle and temperature.  Essentially if the solar panel angle is not sufficiently high, the solar panel can become covered with snow which will not fall off, causing light to be blocked and therefore no power to be absorbed.
+
+The design of the system is a mix between solar panel angle, anticipated snowfall and anticipated isolation.  However, it is of note that an improved algorithm would help out in any case - even hypothetically at extremely high northern latitudes, assuming that there is at least some solar isolation during the winter months.
+
+![Solar Panel at 45 degree Angle With Snow](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/1%20Measuring%20Current%20%26%20Voltage%20From%20Battery/20160101_112804.jpg)
+
+![Solar Panel at ~80 degree Angle With No Snow Cover](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/1%20Measuring%20Current%20%26%20Voltage%20From%20Battery/20160101_113110.jpg)
+
+
+
 ## Power Requirements & Electronics Warning
 
 ### Speaking the 'Language' of Solar Power
