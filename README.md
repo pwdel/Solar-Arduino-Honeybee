@@ -153,6 +153,13 @@ http://downloads.arduino.cc/openwrtyun/1/packages/index.html
 http://www.lucadentella.it/en/2014/11/08/yun-adattatore-wifi-usb/
 
 
+## Adding the Camera
+
+### Arduino Yun Camera Reference
+
+https://forum.arduino.cc/index.php?topic=188690.0
+
+
 ## Vision System
 
 Background:
