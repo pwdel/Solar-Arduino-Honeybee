@@ -159,6 +159,10 @@ http://www.lucadentella.it/en/2014/11/08/yun-adattatore-wifi-usb/
 
 https://forum.arduino.cc/index.php?topic=188690.0
 
+### Installing a Webcam to Linino
+
+http://wiki.linino.org/doku.php?id=wiki:lininowebcamstream
+
 
 ## Vision System
 
