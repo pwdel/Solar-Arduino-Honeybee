@@ -28,6 +28,14 @@ https://www.arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN
 
 The circuit, as shown above, is a simple voltage divider followed by a TVS circuit, which uses standard IN4740 diodes.  The IN4740 diodes were used due to their fast turn-on time, which are presumably faster than the Arduino Yun inrush diodes, whose turn-on time specifications could not be found.
 
+#### Further Reading On TVS Circuit
+
+http://www.avrfreaks.net/forum/clamping-diodes-0
+http://www.mouser.com/ds/2/149/1N4740A-888332.pdf
+http://www.onsemi.com/pub_link/Collateral/AND8230-D.PDF
+
+#### Pictures of Breadboard
+
 ![Actual Breadboard Solder Job](https://raw.githubusercontent.com/pwdel/Solar-Arduino-Honeybee/master/1%20Measuring%20Current%20%26%20Voltage%20From%20Battery/ArduinoYun-ExternalCircuit.jpg)
 
 The above is a picture of the hand-soldered prototype of the circuit, which feeds into A0 in the Arduino Yun.
