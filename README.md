@@ -156,6 +156,12 @@ http://www.lucadentella.it/en/2014/11/08/yun-adattatore-wifi-usb/
 
 http://www.skillbank.co.uk/arduino/measure.htm
 
+## Refining the Battery Charging Process
+
+### 12V Battery Charging
+
+https://www.parallax.com/sites/default/files/downloads/601-00526-PB137-Datasheet.pdf
+
 ## Adding the Camera
 
 ### Arduino Yun Camera Reference
@@ -166,8 +172,7 @@ https://forum.arduino.cc/index.php?topic=188690.0
 
 http://wiki.linino.org/doku.php?id=wiki:lininowebcamstream
 
-
-## Vision System
+### Vision System
 
 Background:
 
